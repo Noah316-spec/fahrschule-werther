@@ -356,3 +356,25 @@ p{margin:0}
    wie "Anhaengerweiterbildung" haben dadurch die Kachel aufgeblaeht. */
 .service>div,.reach span,.logocard__facts span,.acc__name,.stop{min-width:0}
 .service h3,.service p,.reach span,.acc__name,.acc__name small{overflow-wrap:anywhere}
+
+/* ==========================================================================
+   Barrierefreiheit: Klickflaechen nach WCAG 2.5.5 (mindestens 44x44 px)
+   ========================================================================== */
+.callbtn{min-height:44px;min-width:44px;justify-content:center}
+.navtoggle{height:44px}
+@media (max-width:960px){
+  .mainnav a{min-height:48px;display:flex;align-items:center}
+}
+/* Zustimmungshaken groesser, Label als Trefferflaeche */
+.agree input{width:24px;height:24px;margin-top:0}
+.agree label{cursor:pointer;padding:10px 0;margin:-10px 0}
+/* Telefon- und E-Mail-Links in Listen bekommen eine echte Trefferflaeche */
+.checkbox li a,.foot a{display:inline-flex;align-items:center;min-height:44px}
+
+/* ---------- Formularfehler ---------- */
+.fld-error{margin-top:5px;font-size:.83rem;font-weight:600;color:#d92b1f;grid-column:1/-1}
+.fld.has-error input,.fld.has-error textarea{border-color:#d92b1f}
+.agree.has-error{border-color:#d92b1f}
+/* Logo-Link und kurze Fusszeilen-Links auf volle Trefferflaeche */
+.logo{min-height:44px}
+.foot a{min-width:44px}
