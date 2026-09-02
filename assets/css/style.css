@@ -63,17 +63,15 @@ p{margin:0}
 @media (max-width:560px){.wrap{padding:0 22px}}
 
 /* ---------- Abschnittskopf: haengende Marke links ---------- */
-.head{display:grid;grid-template-columns:minmax(0,7.5rem) minmax(0,1fr);gap:0 34px;align-items:start;margin-bottom:clamp(38px,5vw,56px)}
-.head__num{font-family:var(--mono);font-size:.7rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--rost);padding-top:.9em;line-height:1.5}
-.head>div{max-width:60ch;min-width:0}
+.head{max-width:62ch;margin-bottom:clamp(36px,4.5vw,54px)}
+.head__num{display:inline-flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.7rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--rost);margin-bottom:18px}
+.head__num::before{content:"";width:22px;height:1px;background:var(--rost)}
+.head>div{min-width:0}
 .head h2{font-size:clamp(1.75rem,1.25rem + 2.2vw,2.7rem)}
 .head p{margin-top:16px;color:var(--tinte-leise);font-size:clamp(1rem,.97rem + .22vw,1.1rem)}
 .sect--dark .head p{color:#98a0b4}
 .sect--dark .head__num{color:#c98a6d}
-@media (max-width:760px){
-  .head{grid-template-columns:1fr;gap:12px}
-  .head__num{padding-top:0}
-}
+.sect--dark .head__num::before{background:#c98a6d}
 
 /* ---------- Schaltflaechen ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:.9em 1.6em;border-radius:var(--r);border:1px solid transparent;font-family:var(--text);font-weight:600;font-size:.96rem;text-decoration:none;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s;min-height:48px}
@@ -164,7 +162,7 @@ p{margin:0}
 @media (max-width:520px){.factband__inner{grid-template-columns:1fr}}
 
 /* ---------- Zweispalter ---------- */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(38px,5vw,66px);align-items:center}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(38px,5vw,66px);align-items:start}
 .split h2{font-size:clamp(1.6rem,1.2rem + 1.8vw,2.35rem)}
 .split p+p{margin-top:16px}
 .split .muted{color:var(--tinte-leise)}
@@ -370,8 +368,8 @@ p{margin:0}
 /* ---------- Klassengruppen-Ueberschrift ohne Icon ---------- */
 .classgroup__title{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:.68rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-still);margin-bottom:14px}
 .classgroup__title::after{content:"";flex:1;height:1px;background:var(--linie)}
-/* Auf der Textachse des Abschnittskopfs ausrichten */
-@media (min-width:761px){
-  .unterlagen,.kurse,.classgroup,.acc,.offers,.b196,.pricewrap,.legalgrid{margin-left:calc(7.5rem + 34px)}
-  .b196{margin-left:calc(7.5rem + 34px)}
+
+/* Alle vollbreiten Baender teilen sich den Seitenrand von .wrap */
+@media (max-width:560px){
+  .hero__grid,.factband__inner,.topbar__inner,.draft__inner,.foot__grid,.foot__bottom,.legal__inner{padding-left:22px;padding-right:22px}
 }
