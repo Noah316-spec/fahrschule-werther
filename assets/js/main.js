@@ -49,34 +49,6 @@
     });
   });
 
-  /* ---------- Einblenden beim Scrollen ---------- */
-  var rises = [].slice.call(document.querySelectorAll('.rise'));
-
-  var showAll = function () {
-    rises.forEach(function (el) { el.classList.add('is-in'); });
-    root.classList.remove('js-anim');
-  };
-
-  if ('IntersectionObserver' in window && rises.length) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    rises.forEach(function (el) { io.observe(el); });
-
-    // Sicherheitsnetz: falls der Observer in einer Umgebung nie ausloest,
-    // wird alles sichtbar geschaltet. Niemals unsichtbare Inhalte.
-    window.setTimeout(function () {
-      if (!document.querySelector('.rise.is-in')) showAll();
-    }, 1500);
-  } else {
-    showAll();
-  }
-
   /* ---------- Aktiver Navigationspunkt ---------- */
   var sections = [].slice.call(document.querySelectorAll('main section[id]'));
   var navLinks = [].slice.call(document.querySelectorAll('.mainnav a[href^="#"]'));
@@ -96,29 +68,6 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach(function (s) { spy.observe(s); });
-  }
-
-  /* ---------- Lesefortschritt ---------- */
-  var bar = document.querySelector('.bar span');
-  if (bar) {
-    var updateBar = function () {
-      var max = root.scrollHeight - root.clientHeight;
-      bar.style.width = (max > 0 ? (root.scrollTop / max) * 100 : 0) + '%';
-    };
-    window.addEventListener('scroll', updateBar, { passive: true });
-    window.addEventListener('resize', updateBar);
-    updateBar();
-  }
-
-  /* ---------- Button "nach oben" ---------- */
-  var up = document.getElementById('up');
-  if (up) {
-    var onScroll = function () { up.classList.toggle('is-on', window.scrollY > 700); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    up.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
   }
 
   /* ---------- Kontaktformular -> E-Mail-Programm ---------- */
@@ -177,16 +126,11 @@
       var name = val('name');
       var zeilen = [
         'Name: ' + (name || '-'),
-        'Straße / Nr.: ' + (val('strasse') || '-'),
-        'PLZ / Ort: ' + (val('ort') || '-'),
         'Telefon: ' + (val('telefon') || '-'),
         'E-Mail: ' + (val('email') || '-'),
         '',
         'Nachricht:',
-        val('nachricht'),
-        '',
-        '--',
-        'Gesendet über das Kontaktformular auf fahrschule-werther.de'
+        val('nachricht')
       ];
 
       var betreff = 'Anfrage über die Website' + (name ? ' – ' + name : '');
